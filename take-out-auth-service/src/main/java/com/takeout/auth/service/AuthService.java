@@ -19,11 +19,11 @@ public interface AuthService {
     Result<LoginResponse> login(LoginRequest loginRequest);
     
     /**
-     * 管理员登录
+     * 商家登录
      * @param loginRequest 登录请求
      * @return 登录结果
      */
-    Result<LoginResponse> adminLogin(LoginRequest loginRequest);
+    Result<LoginResponse> merchantLogin(LoginRequest loginRequest);
     
     /**
      * 用户注册

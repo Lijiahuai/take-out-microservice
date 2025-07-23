@@ -29,13 +29,13 @@ public class AuthController {
     }
     
     /**
-     * 管理员登录
+     * 商家登录
      * @param loginRequest 登录请求
      * @return 登录结果
      */
-    @PostMapping("/admin/login")
-    public Result<LoginResponse> adminLogin(@RequestBody LoginRequest loginRequest) {
-        return authService.adminLogin(loginRequest);
+    @PostMapping("/merchant/login")
+    public Result<LoginResponse> merchantLogin(@RequestBody LoginRequest loginRequest) {
+        return authService.merchantLogin(loginRequest);
     }
     
     /**

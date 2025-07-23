@@ -6,7 +6,7 @@ package com.takeout.common.constant;
 public class RedisKey {
     // 用户认证相关
     public static final String USER_TOKEN_PREFIX = "user:token:";
-    public static final String ADMIN_TOKEN_PREFIX = "admin:token:";
+    public static final String MERCHANT_TOKEN_PREFIX = "merchant:token:";
     
     // 购物车相关
     public static final String USER_CART_PREFIX = "user:cart:";

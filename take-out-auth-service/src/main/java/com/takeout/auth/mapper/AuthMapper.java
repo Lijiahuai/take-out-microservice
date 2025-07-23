@@ -1,6 +1,6 @@
 package com.takeout.auth.mapper;
 
-import com.takeout.auth.entity.Admin;
+import com.takeout.auth.entity.Merchant;
 import com.takeout.auth.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -24,12 +24,12 @@ public interface AuthMapper {
     User getUserByUsername(@Param("username") String username);
     
     /**
-     * 通过管理员用户名查询管理员
+     * 通过商家用户名查询商家
      * @param username 用户名
-     * @return 管理员
+     * @return 商家
      */
-    @Select("SELECT * FROM admin WHERE username = #{username}")
-    Admin getAdminByUsername(@Param("username") String username);
+    @Select("SELECT * FROM merchant WHERE username = #{username}")
+    Merchant getMerchantByUsername(@Param("username") String username);
     
     /**
      * 注册用户

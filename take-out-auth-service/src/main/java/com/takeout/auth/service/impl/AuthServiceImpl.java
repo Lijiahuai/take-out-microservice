@@ -3,7 +3,7 @@ package com.takeout.auth.service.impl;
 import com.takeout.auth.dto.LoginRequest;
 import com.takeout.auth.dto.LoginResponse;
 import com.takeout.auth.dto.RegisterRequest;
-import com.takeout.auth.entity.Admin;
+import com.takeout.auth.entity.Merchant;
 import com.takeout.auth.entity.User;
 import com.takeout.auth.mapper.AuthMapper;
 import com.takeout.auth.service.AuthService;
@@ -72,30 +72,30 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public Result<LoginResponse> adminLogin(LoginRequest loginRequest) {
-        Admin admin = authMapper.getAdminByUsername(loginRequest.getUsername());
-        if (admin == null) {
-            return Result.error("管理员不存在");
+    public Result<LoginResponse> merchantLogin(LoginRequest loginRequest) {
+        Merchant merchant = authMapper.getMerchantByUsername(loginRequest.getUsername());
+        if (merchant == null) {
+            return Result.error("商家不存在");
         }
         
         // 密码加密
         String encryptPassword = DigestUtils.md5DigestAsHex(
                 loginRequest.getPassword().getBytes(StandardCharsets.UTF_8));
         
-        if (!admin.getPassword().equals(encryptPassword)) {
+        if (!merchant.getPassword().equals(encryptPassword)) {
             return Result.error("密码错误");
         }
         
         // 生成token
-        String token = generateToken(admin.getId().toString());
+        String token = generateToken(merchant.getId().toString());
         
         // 将token存入Redis
-        String redisKey = RedisKey.ADMIN_TOKEN_PREFIX + admin.getId();
+        String redisKey = RedisKey.MERCHANT_TOKEN_PREFIX + merchant.getId();
         redisTemplate.opsForValue().set(redisKey, token, TOKEN_EXPIRE_TIME, TimeUnit.SECONDS);
         
         LoginResponse response = new LoginResponse();
-        response.setUserId(admin.getId());
-        response.setUsername(admin.getUsername());
+        response.setUserId(merchant.getId());
+        response.setUsername(merchant.getUsername());
         response.setToken(token);
         response.setExpireTime(TOKEN_EXPIRE_TIME);
         
