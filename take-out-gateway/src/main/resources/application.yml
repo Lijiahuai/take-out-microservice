@@ -1,0 +1,68 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: take-out-gateway
+    
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: auth-service
+          uri: lb://take-out-auth-service
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - StripPrefix=1
+            
+        - id: user-service
+          uri: lb://take-out-user-service
+          predicates:
+            - Path=/api/user/**
+          filters:
+            - StripPrefix=1
+            
+        - id: merchant-service
+          uri: lb://take-out-merchant-service
+          predicates:
+            - Path=/api/merchant/**
+          filters:
+            - StripPrefix=1
+            
+        - id: dish-service
+          uri: lb://take-out-dish-service
+          predicates:
+            - Path=/api/dish/**
+          filters:
+            - StripPrefix=1
+            
+        - id: order-service
+          uri: lb://take-out-order-service
+          predicates:
+            - Path=/api/order/**
+          filters:
+            - StripPrefix=1
+  
+  data:
+    redis:
+      host: localhost
+      port: 16380
+      timeout: 60000
+      lettuce:
+        pool:
+          max-active: 200
+          max-idle: 50
+          min-idle: 10
+          max-wait: 3000
+
+# 注册到Eureka Server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:admin123@localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true 

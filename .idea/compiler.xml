@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="take-out-common" />
+        <module name="take-out-dish-service" />
+        <module name="take-out-merchant-service" />
+        <module name="take-out-registry" />
+        <module name="take-out-user-service" />
+        <module name="take-out-auth-service" />
+        <module name="take-out-config" />
+        <module name="take-out-order-service" />
+        <module name="take-out-gateway" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="take-out-auth-service" options="-parameters" />
+      <module name="take-out-common" options="-parameters" />
+      <module name="take-out-config" options="-parameters" />
+      <module name="take-out-dish-service" options="-parameters" />
+      <module name="take-out-gateway" options="-parameters" />
+      <module name="take-out-merchant-service" options="-parameters" />
+      <module name="take-out-microservices" options="-parameters" />
+      <module name="take-out-order-service" options="-parameters" />
+      <module name="take-out-registry" options="-parameters" />
+      <module name="take-out-user-service" options="-parameters" />
+    </option>
+  </component>
+</project>

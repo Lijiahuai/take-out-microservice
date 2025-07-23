@@ -1,0 +1,24 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: take-out-registry
+  security:
+    user:
+      name: admin
+      password: admin123
+  cloud:
+    compatibility-verifier:
+      enabled: false
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    # 不向自己注册
+    register-with-eureka: false
+    # 不从自己获取服务注册信息
+    fetch-registry: false
+    service-url:
+      defaultZone: http://admin:admin123@${eureka.instance.hostname}:${server.port}/eureka/ 
