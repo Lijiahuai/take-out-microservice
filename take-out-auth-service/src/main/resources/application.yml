@@ -31,7 +31,8 @@ eureka:
     service-url:
       defaultZone: http://admin:admin123@localhost:8761/eureka/
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: false # 优先使用主机名
+    hostname: localhost # 强制指定主机名
 
 # MyBatis配置
 mybatis:
