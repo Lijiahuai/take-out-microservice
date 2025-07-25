@@ -10,6 +10,16 @@ import java.math.BigDecimal;
 @Data
 public class CartItemDTO {
     /**
+     * 店铺ID
+     */
+    private Long shopId;
+    
+    /**
+     * 店铺名称
+     */
+    private String shopName;
+    
+    /**
      * 菜品ID
      */
     private Long dishId;
@@ -30,17 +40,7 @@ public class CartItemDTO {
     private BigDecimal price;
     
     /**
-     * 数量
+     * 购买数量
      */
     private Integer quantity;
-    
-    /**
-     * 店铺ID
-     */
-    private Long shopId;
-    
-    /**
-     * 店铺名称
-     */
-    private String shopName;
 } 

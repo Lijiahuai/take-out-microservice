@@ -2,8 +2,9 @@ package com.takeout.user.service;
 
 import com.takeout.common.dto.Result;
 import com.takeout.user.dto.CartItemDTO;
-import com.takeout.user.dto.SettlementRequest;
+import com.takeout.user.entity.Cart;
 import com.takeout.user.entity.CartItem;
+import com.takeout.user.vo.CartVO;
 
 import java.util.List;
 
@@ -13,48 +14,65 @@ import java.util.List;
 public interface CartService {
     
     /**
-     * 获取购物车列表
+     * 获取用户购物车列表
      * @param userId 用户ID
-     * @return 购物车项列表
+     * @return 购物车列表
      */
-    Result<List<CartItem>> getCartItems(Long userId);
+    Result<List<CartVO>> getUserCarts(Long userId);
     
     /**
-     * 添加到购物车
-     * @param cartItemDTO 购物车项DTO
+     * 获取用户指定店铺的购物车
      * @param userId 用户ID
+     * @param shopId 店铺ID
+     * @return 购物车
+     */
+    Result<CartVO> getUserCartByShopId(Long userId, Long shopId);
+    
+    /**
+     * 添加商品到购物车
+     * @param userId 用户ID
+     * @param cartItemDTO 购物车项DTO
      * @return 添加结果
      */
-    Result<Void> addToCart(CartItemDTO cartItemDTO, Long userId);
+    Result<CartItem> addToCart(Long userId, CartItemDTO cartItemDTO);
     
     /**
      * 更新购物车项数量
-     * @param id 购物车项ID
-     * @param quantity 数量
      * @param userId 用户ID
+     * @param cartItemId 购物车项ID
+     * @param quantity 数量
      * @return 更新结果
      */
-    Result<Void> updateCartItemQuantity(Long id, Integer quantity, Long userId);
+    Result<CartItem> updateCartItemQuantity(Long userId, Long cartItemId, Integer quantity);
     
     /**
      * 删除购物车项
-     * @param id 购物车项ID
      * @param userId 用户ID
+     * @param cartItemId 购物车项ID
      * @return 删除结果
      */
-    Result<Void> removeFromCart(Long id, Long userId);
+    Result<Void> removeCartItem(Long userId, Long cartItemId);
     
     /**
-     * 清空购物车
+     * 清空用户购物车
      * @param userId 用户ID
      * @return 清空结果
      */
-    Result<Void> clearCart(Long userId);
+    Result<Void> clearUserCart(Long userId);
     
     /**
-     * 结算购物车
-     * @param settlementRequest 结算请求
-     * @return 结算结果
+     * 清空用户指定店铺的购物车
+     * @param userId 用户ID
+     * @param shopId 店铺ID
+     * @return 清空结果
      */
-    Result<Long> settlement(SettlementRequest settlementRequest);
+    Result<Void> clearUserCartByShopId(Long userId, Long shopId);
+    
+    /**
+     * 批量获取购物车项
+     * @param userId 用户ID
+     * @param cartItemIds 购物车项ID列表
+     * @return 购物车项列表
+     */
+    Result<List<CartItem>> getCartItemsByIds(Long userId, List<Long> cartItemIds);
 } 

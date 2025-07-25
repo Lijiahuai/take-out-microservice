@@ -19,6 +19,36 @@ public class UserInfo {
      * 用户ID
      */
     private Long userId;
+
+    /**
+     * 真实姓名
+     */
+    private String realName;
+
+    /**
+     * 电话
+     */
+    private String phone;
+
+    /**
+     * 性别：M/F/O
+     */
+    private String gender;
+
+    /**
+     * 模拟坐标X(范围1-10000)
+     */
+    private Integer x;
+
+    /**
+     * 模拟坐标Y(范围1-10000)
+     */
+    private Integer y;
+
+    /**
+     * 备注
+     */
+    private String remark;
     
     /**
      * 昵称
@@ -34,11 +64,6 @@ public class UserInfo {
      * 余额
      */
     private BigDecimal balance;
-    
-    /**
-     * 性别（0-未知，1-男，2-女）
-     */
-    private Integer gender;
     
     /**
      * 生日

@@ -24,8 +24,8 @@ public interface UserInfoMapper {
      * @param userInfo 用户信息
      * @return 影响行数
      */
-    @Insert("INSERT INTO user_info(user_id, nickname, avatar, balance, gender, birthday, address, create_time, update_time) " +
-            "VALUES(#{userId}, #{nickname}, #{avatar}, #{balance}, #{gender}, #{birthday}, #{address}, NOW(), NOW())")
+    @Insert("INSERT INTO user_info(user_id, nickname, real_name, phone, gender, avatar, balance, birthday, address, x, y, remark, create_time, update_time) " +
+            "VALUES(#{userId}, #{nickname}, #{realName}, #{phone}, #{gender}, #{avatar}, #{balance}, #{birthday}, #{address}, #{x}, #{y}, #{remark}, NOW(), NOW())")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     int createUserInfo(UserInfo userInfo);
     
@@ -34,15 +34,19 @@ public interface UserInfoMapper {
      * @param userInfo 用户信息
      * @return 影响行数
      */
-    @Update("<script>" +
-            "UPDATE user_info SET update_time = NOW() " +
-            "<if test='nickname != null'>, nickname = #{nickname}</if>" +
-            "<if test='avatar != null'>, avatar = #{avatar}</if>" +
-            "<if test='balance != null'>, balance = #{balance}</if>" +
-            "<if test='gender != null'>, gender = #{gender}</if>" +
-            "<if test='birthday != null'>, birthday = #{birthday}</if>" +
-            "<if test='address != null'>, address = #{address}</if>" +
-            "WHERE user_id = #{userId}" +
-            "</script>")
+    @Update("UPDATE user_info SET " +
+            "nickname = #{nickname}, " +
+            "real_name = #{realName}, " +
+            "phone = #{phone}, " +
+            "gender = #{gender}, " +
+            "avatar = #{avatar}, " +
+            "balance = #{balance}, " +
+            "birthday = #{birthday}, " +
+            "address = #{address}, " +
+            "x = #{x}, " +
+            "y = #{y}, " +
+            "remark = #{remark}, " +
+            "update_time = NOW() " +
+            "WHERE user_id = #{userId}")
     int updateUserInfo(UserInfo userInfo);
 } 

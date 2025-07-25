@@ -16,9 +16,19 @@ public class CartItem {
     private Long id;
     
     /**
+     * 购物车ID
+     */
+    private Long cartId;
+    
+    /**
      * 用户ID
      */
     private Long userId;
+    
+    /**
+     * 店铺ID
+     */
+    private Long shopId;
     
     /**
      * 菜品ID
@@ -41,19 +51,14 @@ public class CartItem {
     private BigDecimal price;
     
     /**
-     * 数量
+     * 购买数量
      */
     private Integer quantity;
     
     /**
-     * 店铺ID
+     * 小计金额
      */
-    private Long shopId;
-    
-    /**
-     * 店铺名称
-     */
-    private String shopName;
+    private BigDecimal subtotal;
     
     /**
      * 创建时间

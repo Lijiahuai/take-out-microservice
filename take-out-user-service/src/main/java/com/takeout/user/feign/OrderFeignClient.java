@@ -1,6 +1,7 @@
 package com.takeout.user.feign;
 
 import com.takeout.common.dto.Result;
+import com.takeout.user.dto.OrderCreateRequest;
 import com.takeout.user.dto.SettlementRequest;
 import com.takeout.user.entity.CartItem;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -14,13 +15,10 @@ import java.util.List;
  */
 @FeignClient(value = "take-out-order-service", path = "/order")
 public interface OrderFeignClient {
-    
     /**
      * 创建订单
-     * @param settlementRequest 结算请求
-     * @param cartItems 购物车项
      * @return 订单ID
      */
     @PostMapping("/create")
-    Result<Long> createOrder(@RequestBody SettlementRequest settlementRequest, @RequestBody List<CartItem> cartItems);
-} 
+    Result<Long> createOrder(@RequestBody OrderCreateRequest request);
+}
